@@ -4,9 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Radio, RadioGroup } from "@/components/ui/radio";
 import { Select } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 import { RichTextField } from "@/components/ui/rich-text-field";
 
 const code = `import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Radio, RadioGroup } from "@/components/ui/radio";
@@ -19,6 +21,12 @@ import { RichTextField } from "@/components/ui/rich-text-field";
     <label htmlFor="email">Email</label>
     <Input id="email" type="email" placeholder="you@example.com" />
     <p className="text-xs text-ink-muted">We'll only use this for account notifications.</p>
+  </div>
+
+  {/* Textarea */}
+  <div className="space-y-2">
+    <label htmlFor="notes">Notes</label>
+    <Textarea id="notes" placeholder="Add more detail…" />
   </div>
 
   {/* Select */}
@@ -76,7 +84,7 @@ export function FormsSection() {
       title="Forms"
       description={
         <>
-          Forms compose <code>&lt;Input&gt;</code>, <code>&lt;Select&gt;</code>,
+          Forms compose <code>&lt;Input&gt;</code>, <code>&lt;Textarea&gt;</code>, <code>&lt;Select&gt;</code>,
           <code>&lt;Checkbox&gt;</code>, <code>&lt;Radio&gt;</code>,{" "}
           <code>&lt;RichTextField&gt;</code> (milkdown), native HTML labels,
           helper text, and <code>&lt;Button&gt;</code>. Vertical spacing between
@@ -112,6 +120,11 @@ export function FormsSection() {
             <p className="text-xs text-ink-muted">
               We'll only use this for account notifications.
             </p>
+          </div>
+
+          <div className="space-y-2">
+            <label htmlFor="ds-form-notes">Notes</label>
+            <Textarea id="ds-form-notes" placeholder="Add more detail…" />
           </div>
 
           <div className="space-y-2">

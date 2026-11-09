@@ -18,3 +18,18 @@ export type SharedProps = {
 
 export type PageProps<T extends Record<string, unknown> = Record<string, unknown>> =
   SharedProps & T & InertiaPageProps
+
+export type Todo = {
+  id: number
+  title: string
+  description: string | null
+  completed: boolean
+}
+
+export type TodoFilter = "all" | "active" | "completed"
+
+export type TodoCounts = {
+  total: number
+  completed: number
+  active: number
+}

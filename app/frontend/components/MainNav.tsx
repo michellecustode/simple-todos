@@ -35,10 +35,10 @@ export type NavItemDef = {
 
 const DEFAULT_NAV_ITEMS: NavItemDef[] = [
   {
-    href: "/dashboard",
+    href: "/",
     icon: Home,
-    label: "Home",
-    match: (url) => url === "/" || url.startsWith("/dashboard"),
+    label: "To-dos",
+    match: (url) => url === "/" || url.startsWith("/?"),
   },
 ]
 

@@ -11,7 +11,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "logs in with valid credentials and redirects to the dashboard" do
+  test "logs in with valid credentials and redirects to the to-do list" do
     assert_difference -> { Session.count }, 1 do
       post login_path, params: {
         email: @user.email,
@@ -19,7 +19,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
       }
     end
 
-    assert_redirected_to dashboard_path
+    assert_redirected_to root_path
   end
 
   test "rejects invalid credentials" do
@@ -44,19 +44,24 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to login_path
   end
 
-  test "unauthenticated users cannot reach the dashboard" do
-    get dashboard_path
+  test "unauthenticated users cannot change to-dos" do
+    post todos_path, params: { todo: { title: "Nope" } }
     assert_redirected_to login_path
   end
 
-  test "authenticated users can reach the dashboard" do
+  test "authenticated users can reach the to-do list" do
     post login_path, params: {
       email: @user.email,
       password: @password
     }
 
-    get dashboard_path
+    get root_path
     assert_response :success
+  end
+
+  test "the old /dashboard URL redirects to the root" do
+    get "/dashboard"
+    assert_redirected_to root_path
   end
 
   test "DELETE /logout terminates the session and redirects to login" do
@@ -71,7 +76,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to login_path
 
-    get dashboard_path
+    post todos_path, params: { todo: { title: "Nope" } }
     assert_redirected_to login_path
   end
 end
